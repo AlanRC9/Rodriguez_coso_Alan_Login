@@ -25,8 +25,9 @@ public class Login : MonoBehaviour
     private IEnumerator ShowAlert()
     {
         errorText.text = "Error: This may be due to one of the following reasons:\n" +
-                 "- Some fields are missing.\n" +
-                 "- User does not exist\n";
+                "- Some fields are missing.\n" +
+                "- User does not exist\n" +
+                "- Incorrect credentials\n";
 
         yield return new WaitForSeconds(5);
 

@@ -14,7 +14,7 @@ public class Register : MonoBehaviour
         bool success;
         success = SQLManager.Instance.Register(username.text, password.text);
 
-        if (success) SceneManager.LoadScene("Lobby");
+        if (success) StartCoroutine(ShowConfirmation());
         else StartCoroutine(ShowAlert());
     }
 
@@ -24,6 +24,14 @@ public class Register : MonoBehaviour
                  "- Some fields are missing.\n" +
                  "- The password does not have the minimum of 8 characters.\n" +
                  "- The username is already taken.";
+
+        yield return new WaitForSeconds(5);
+
+        errorText.text = "";
+    }
+    private IEnumerator ShowConfirmation()
+    {
+        errorText.text = "User registered succesfully";
 
         yield return new WaitForSeconds(5);
 

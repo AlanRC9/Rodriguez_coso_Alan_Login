@@ -64,12 +64,12 @@ public class SQLManager : MonoBehaviour
     {
         try
         {
-            // Creación de la conexión a la base de datos
+            //Creación de la conexión a la base de datos
             string dbUri = "URI=file:" + Application.dataPath + "/MyDatabase.sqlite";
             IDbConnection dbConnection = new SqliteConnection(dbUri);
             dbConnection.Open();
 
-            // Comando de login
+            //Comando de login
             IDbCommand dbCommandLogin = dbConnection.CreateCommand();
             dbCommandLogin.CommandText =
                 "SELECT COUNT(*) FROM Users WHERE Username = @username AND Password = @password";
@@ -78,13 +78,13 @@ public class SQLManager : MonoBehaviour
             dbCommandLogin.Parameters.Add(new SqliteParameter("@username", username));
             dbCommandLogin.Parameters.Add(new SqliteParameter("@password", password));
 
-            // Ejecutar la query
+            //Ejecuta la query
             int result = System.Convert.ToInt32(dbCommandLogin.ExecuteScalar());
 
-            // Cerrar conexión
+            //Cerrar conexión
             dbConnection.Close();
 
-            // Si existe exactamente 1 usuario el login correcto
+            //Si existe exactamente 1 usuario el login correcto
             return result == 1;
         }
         catch (System.Exception ex)
@@ -97,7 +97,7 @@ public class SQLManager : MonoBehaviour
 
     public bool Register(string username, string password)
     {
-        // Comprobación de largo
+        //Comprobación de largo
         if (password.Length < 8)
         {
             Debug.Log("La contraseña debe tener al menos 8 caracteres.");
@@ -106,24 +106,23 @@ public class SQLManager : MonoBehaviour
 
         try
         {
-            // Creación / Apertura de la conexión con la base de datos
+            //Creación / Apertura de la conexión con la base de datos
             string dbUri = "URI=file:" + Application.dataPath + "/MyDatabase.sqlite";
             IDbConnection dbConnection = new SqliteConnection(dbUri);
             dbConnection.Open();
 
-            // Comando de inserción
+            //Comando de inserción
             IDbCommand dbCommandRegister = dbConnection.CreateCommand();
             dbCommandRegister.CommandText =
                 "INSERT INTO Users (Username, Password) VALUES (@username, @password)";
 
-            // Parámetros (evita SQL injection)
             dbCommandRegister.Parameters.Add(new SqliteParameter("@username", username));
             dbCommandRegister.Parameters.Add(new SqliteParameter("@password", password));
 
-            // Ejecutar la query
+            //Ejecutar la query
             dbCommandRegister.ExecuteNonQuery();
 
-            // Cerrar conexión
+            //Cerrar conexión
             dbConnection.Close();
 
             Debug.Log("Usuario registrado correctamente.");
