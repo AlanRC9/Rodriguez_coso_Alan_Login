@@ -12,7 +12,7 @@ public class Register : MonoBehaviour
     public void TryRegister()
     {
         bool success;
-        success = SQLManager.Instance.Register(username.text, password.text);
+        success = SQLManager.Instance.SignUp(username.text, password.text);
 
         if (success) StartCoroutine(ShowConfirmation());
         else StartCoroutine(ShowAlert());
