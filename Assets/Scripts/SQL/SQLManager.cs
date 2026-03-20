@@ -15,6 +15,8 @@ public class SQLManager : MonoBehaviour
 
     private SQLiteConnection db;
 
+    public int currentUserID {  get; private set; }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -107,9 +109,9 @@ public class SQLManager : MonoBehaviour
 
             if (user != null)
             {
-                int userId = user.userId;
+                currentUserID = user.userId;
 
-                Inventory.Instance.InitializeInventory(userId);
+                Inventory.Instance.InitializeInventory(currentUserID);
 
                 return true;
             }
@@ -140,7 +142,8 @@ public class SQLManager : MonoBehaviour
                 User newUser = new User
                 {
                     userName = username,
-                    userPassword = password
+                    userPassword = password,
+                    money = 999
                 };
 
                 db.Insert(newUser);
@@ -267,6 +270,38 @@ public class SQLManager : MonoBehaviour
 
         return users;
     }
+
+    //Obtiene el dinero del User
+    public int GetUserMoney()
+    {
+        return db.Find<User>(currentUserID).money;
+    }
+
+    //Agrega dinero al User
+    public void AddMoney(int amount)
+    {
+        User user = db.Find<User>(currentUserID);
+
+        if (user != null)
+        {
+            user.money += amount;
+            db.Update(user);
+        }
+    }
+
+    //Gastar dinero del User
+    public bool SpendMoney(int amount)
+    {
+        User user = db.Find<User>(currentUserID);
+
+        if (user.money < amount) return false;
+
+        user.money -= amount;
+        db.Update(user);
+        return true;
+
+    }
+
 
     // Elimina a un usuario de la base de datos
     public void DeleteUser(int userId)

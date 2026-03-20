@@ -52,9 +52,9 @@ public class InventoryUIManager : MonoBehaviour
             {
                 ItemSO item = ItemsReferences.instance.GetItem(objectID.Value);
 
-                UIInventory[i].GetComponent<UISlot>().SetItem(item.Icon, item.ItemName, inventory[i].quantity.ToString(), CollectionReferences.instance.GetCollection(item.CollectionId));
+                UIInventory[i].GetComponent<UISlot>().SetItem(item.Icon, item.ItemName, inventory[i].quantity.ToString(), CollectionReferences.instance.GetCollection(item.CollectionId), item.Id);
             }
-            else UIInventory[i].GetComponent<UISlot>().SetItem(null, "", "", "");
+            else UIInventory[i].GetComponent<UISlot>().SetItem(null, "", "", "", null);
 
         }
     }

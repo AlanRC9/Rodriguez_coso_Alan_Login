@@ -15,4 +15,5 @@ MonoBehaviour:
   id: 3
   itemName: Blue One
   icon: {fileID: 846537210, guid: 081539dfec2996448a1de01375577311, type: 3}
+  price: 20
   collectionId: 2

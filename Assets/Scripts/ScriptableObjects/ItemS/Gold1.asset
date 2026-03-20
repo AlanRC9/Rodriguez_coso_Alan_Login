@@ -15,4 +15,5 @@ MonoBehaviour:
   id: 7
   itemName: Golden One
   icon: {fileID: 794097050, guid: 081539dfec2996448a1de01375577311, type: 3}
+  price: 125
   collectionId: 4

@@ -15,4 +15,7 @@ public class User
     [NotNull]
     [Column("user_password")]
     public string userPassword { get; set; }
+
+    [Column("money")]
+    public int money { get; set; }
 }

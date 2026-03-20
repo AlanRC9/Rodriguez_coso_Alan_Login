@@ -15,4 +15,5 @@ MonoBehaviour:
   id: 5
   itemName: Purple One
   icon: {fileID: -1674380642, guid: 081539dfec2996448a1de01375577311, type: 3}
+  price: 50
   collectionId: 3

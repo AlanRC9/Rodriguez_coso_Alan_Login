@@ -17,7 +17,13 @@ public class RemoveItemButton : MonoBehaviour
 
     private void OnRemoveItemButtonClicked()
     {
+        if (GetComponentInParent<UISlot>().GetItemID() != -1)
+        {
+            SQLManager.Instance.AddMoney(ItemsReferences.instance.GetItem(GetComponentInParent<UISlot>().GetItemID()).Price);
+            UIMoeyManager.Instance.UpdateMoney();
+        }
         InventoryUIManager.Instance.RemoveItem(GetComponentInParent<UISlot>().GetID());
+
     }
 
 }

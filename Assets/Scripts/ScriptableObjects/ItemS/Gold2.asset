@@ -15,4 +15,5 @@ MonoBehaviour:
   id: 8
   itemName: Golden Two
   icon: {fileID: 310145382, guid: 081539dfec2996448a1de01375577311, type: 3}
+  price: 200
   collectionId: 4
